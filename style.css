@@ -1,3 +1,4 @@
+
 *{
     box-shadow: 0 0 5px rgba(255, 0, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3), 0 0 30px rgba(255, 0, 255, 0.3), 0 0 40px rgba(128, 0, 128, 0.3), 0 0 70px rgba(128, 0, 128, 0.3), 0 0 80px rgba(128, 0, 128, 0.3), 0 0 100px rgba(128, 0, 128, 0.3), 0 0 150px rgba(128, 0, 128, 0.3);
 
@@ -12,6 +13,11 @@
           0 0 92px rgb(232, 241, 238),
           0 0 102px rgb(244, 249, 247),
           0 0 151px rgb(242, 246, 245);
+
+
+          font-family: 'Iceland', cursive;
+          font-family: 'Roboto', sans-serif;
+          font-family: 'Stardos Stencil', cursive;
       }
 
 
@@ -213,4 +219,8 @@ body{
   }
   
   
- 
+  .button:hover {
+    color: #fff;
+    background-color: #ff0000;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #999, 0 0 30px #999, 0 0 40px #999, 0 0 55px #999;
+  }
