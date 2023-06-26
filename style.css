@@ -1,226 +1,54 @@
-
 *{
-    box-shadow: 0 0 5px rgba(255, 0, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3), 0 0 30px rgba(255, 0, 255, 0.3), 0 0 40px rgba(128, 0, 128, 0.3), 0 0 70px rgba(128, 0, 128, 0.3), 0 0 80px rgba(128, 0, 128, 0.3), 0 0 100px rgba(128, 0, 128, 0.3), 0 0 150px rgba(128, 0, 128, 0.3);
-
-    
-        color: #fff;
-        text-shadow:
-          0 0 7px #fff,
-          0 0 10px #fff,
-          0 0 21px #fff,
-          0 0 42px rgb(250, 252, 251),
-          0 0 82px rgb(218, 231, 226),
-          0 0 92px rgb(232, 241, 238),
-          0 0 102px rgb(244, 249, 247),
-          0 0 151px rgb(242, 246, 245);
-
-
-          font-family: 'Iceland', cursive;
-          font-family: 'Roboto', sans-serif;
-          font-family: 'Stardos Stencil', cursive;
-      }
-
-
-
-
+    border: 1px solid grey;
+}
+html{
+    border: none;
+}
 body{
-    background-image: url(images/cyber.jpg);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    align-content: center;
     border: none;
-    flex-direction: column;
-    height: 100%;
-    
 }
 
 .group-buttons{
-    margin-top: 150px;
-    display: flex;
-    border: 3px solid #FF10F0;
-    width: 900px;
-    height: 900px;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    
+    min-width: 15vw;
+    min-height: 50vh;
+    margin-top: 20vh;
+    height: 50vh;
+    width: 15vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
 }
 
-
-.display{
-    width: 900px;
-    height: 130px;
-    background-color:rgb(7, 7, 7);
-    font-size: 100px;
-    text-align: end;
-    padding-top: 20px;
-    padding-right: 50px;
-    color: white;
-    border-top: none;
+.group-buttons > *{
+    
 }
 
 .display-total{
-    width: 900px;
-    height: 130px;
-    background-color:rgb(7, 7, 7);
-    font-size: 100px;
-    text-align: end;
-    padding-top: 20px;
-    padding-right: 50px;
-    color: white;
-    border-bottom: none;
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+
+   
 }
 
-.ac{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #6a08ab;}
-
-.posneg{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #9900FF;}
-
-.perc{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #9900FF;}
-
-.slash{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #9900FF;}
-
-.seven{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
+.display{
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+   
 }
-
-.eight{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-}
-
-.nine{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-}
-
-.multi{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #9900FF;}
-
-.four{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-}
-
-.five{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-}
-
-.six{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-}
-
-.minus{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #9900FF;}
-
-.one{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-}
-
-.two{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-}
-
-.three{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-    
-}
-
-.add{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #9900FF;}
-
-.zero{
-    width: 450px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #0033FF;
-  
-}
-
-.point{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #9900FF;}
 
 .equal{
-    width: 225px;
-    height: 120px;
-    font-size: 55px;
-    background-color: #6a08ab;
+    grid-column: span 2;
 }
 
-.footer{
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    width: 100%;
-    height: 160px;
-    padding-top: 50px;
-    margin-bottom: 20px;
-    font-size: 35px;
-    
-}
-
-.button:active {
-    background: #0f0f57; 
-    -webkit-box-shadow: 0px 0px 10px 5px #00ffff; 
-    -moz-box-shadow: 0px 0px 10px 5px #00ffff; 
-    box-shadow: 0px 0px 10px 5px #00ffff; 
-    outline: none;
-  }
-  
-  
-  .button:hover {
-    color: #fff;
-    background-color: #ff0000;
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #999, 0 0 30px #999, 0 0 40px #999, 0 0 55px #999;
-  }

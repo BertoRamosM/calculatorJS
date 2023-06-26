@@ -1,5 +1,6 @@
+//all buttons
 const displayCalc = document.querySelector(".display");
-const displayResultElement = document.querySelector(".display-total");
+const displayTotal = document.querySelector(".display-total");
 const ac = document.querySelector(".ac");
 const posneg = document.querySelector(".posneg");
 const perc = document.querySelector(".perc");
@@ -21,242 +22,274 @@ const point = document.querySelector(".point");
 const equal = document.querySelector(".equal");
 const buttons = document.querySelectorAll(".button");
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const operandSymbols = ["*", "/", "-", "+"];
-
-// Numero max 16 characters on display
-let calculation = [];
-
-function showDisplay() {
-  if (calculation.length >= 16) {
-    calculation.splice(16);
-  }
-  const stringResult = calculation.join("");
-  displayCalc.textContent = stringResult;
-
-  if (calculation[0] === 0 && !calculation.includes(".")) {
-    calculation.shift();
-  } else if (calculation.length === 0 || operandSymbols.includes(calculation[0])) {
-    calculation.shift();
-  } else if (
-    operandSymbols.includes(calculation[calculation.length - 2]) &&
-    operandSymbols.includes(calculation[calculation.length - 1])
-  ) {
-    calculation.pop();
-  }
-  displayCalc.textContent = calculation.join("");
-}
-
-showDisplay();
-
-function checkOperand() {
-  if (calculation[0] === 0 && !calculation.includes(".")) {
-    calculation.shift();
-  } else if (calculation.length === 0 || operandSymbols.includes(calculation[0])) {
-    calculation.shift();
-  } else if (
-    operandSymbols.includes(calculation[calculation.length - 2]) &&
-    operandSymbols.includes(calculation[calculation.length - 1])
-  ) {
-    calculation.pop();
-  }
-}
-
-// Top display: shows the result of calculation
-let result = [0];
-
-function displayResult() {
-  if (result.length >= 16) {
-    result.splice(16);
-  }
-
-  const stringTotal = result.join("");
-  displayResultElement.textContent = stringTotal;
-}
-
-displayResult();
-
-function addNumber() {
-  zero.addEventListener("click", function () {
-    calculation.push(0);
-    showDisplay();
-  });
-
-  nine.addEventListener("click", function () {
-    calculation.push(9);
-    showDisplay();
-  });
-
-  eight.addEventListener("click", function () {
-    calculation.push(8);
-    showDisplay();
-  });
-
-  seven.addEventListener("click", function () {
-    calculation.push(7);
-    showDisplay();
-  });
-
-  six.addEventListener("click", function () {
-    calculation.push(6);
-    showDisplay();
-  });
-
-  five.addEventListener("click", function () {
-    calculation.push(5);
-    showDisplay();
-  });
-
-  four.addEventListener("click", function () {
-    calculation.push(4);
-    showDisplay();
-  });
-
-  three.addEventListener("click", function () {
-    calculation.push(3);
-    showDisplay();
-  });
-
-  two.addEventListener("click", function () {
-    calculation.push(2);
-    showDisplay();
-  });
-
-  one.addEventListener("click", function () {
-    calculation.push(1);
-    showDisplay();
-  });
-
-  // Toggle minus or plus number
-  let minusFlag = false;
-  posneg.addEventListener("click", function () {
-    minusFlag = !minusFlag;
-    if (minusFlag === true) {
-      calculation.unshift("-");
-    } else if (minusFlag === false) {
-      calculation.shift("-");
-    }
-    showDisplay();
-  });
-
-  ac.addEventListener("click", function () {
-    calculation = [0];
-    showDisplay();
-  });
-}
-
-addNumber();
-
-// Add operands
-function addOperand() {
-  perc.addEventListener("click", function () {
-    calculation.push("%");
-    showDisplay();
-  });
-
-  slash.addEventListener("click", function () {
-    calculation.push("/");
-    showDisplay();
-  });
-
-  multi.addEventListener("click", function () {
-    calculation.push("*");
-    showDisplay();
-  });
-
-  minus.addEventListener("click", function () {
-    calculation.push("-");
-    showDisplay();
-  });
-
-  add.addEventListener("click", function () {
-    calculation.push("+");
-    showDisplay();
-  });
 
 
+
+//functionality to the buttons (numbers)
+//limitFunction can be found below, it just keeps all functions that work to limit symbols and numbers
+
+zero.addEventListener("click", function(){
+  operationArray.push(0);
+  limitFunction();
+})
+one.addEventListener("click", function(){
+  operationArray.push(1);
+  limitFunction();
+})
+two.addEventListener("click", function(){
+  operationArray.push(2);
+  limitFunction();
+})
+three.addEventListener("click", function(){
+  operationArray.push(3);
+  limitFunction();
+})
+four.addEventListener("click", function(){
+  operationArray.push(4);
+  limitFunction();
+})
+five.addEventListener("click", function(){
+  operationArray.push(5);
+  limitFunction();
+})
+six.addEventListener("click", function(){
+  operationArray.push(6);
+  limitFunction();
+})
+seven.addEventListener("click", function(){
+  operationArray.push(7);
+  limitFunction();
+})
+eight.addEventListener("click", function(){
+  operationArray.push(8);
+  limitFunction();
+})
+nine.addEventListener("click", function(){
+  operationArray.push(9);
+  limitFunction();
+})
+
+
+
+//buttons no numbers--------------
+
+ac.addEventListener("click", function(){
+  operationArray = [0];
+  totalArray = [0];
+  showDisplay();
+  displayTot();
+})
+
+posneg.addEventListener("click", function(){
+  if(operationArray[0] === "-"){
+    operationArray.shift();
     
-  point.addEventListener("click", function () {
-    calculation.push(".");
-    showDisplay();
-  });
+  }else if(operationArray[0] != "-"){
+    operationArray.unshift("-")
+    addZero();
+  }
+  showDisplay();
+})
+
+perc.addEventListener("click", function(){
+  operationArray.push("%");
+  showDisplay();
+  changeDisplay();
+})
+slash.addEventListener("click", function(){
+  operationArray.push("/");
+  showDisplay();
+  changeDisplay();
+})
+multi.addEventListener("click", function(){
+  operationArray.push("*");
+  showDisplay();
+  changeDisplay();
+})
+add.addEventListener("click", function(){
+  operationArray.push("+");
+  showDisplay();
+  changeDisplay();
+})
+minus.addEventListener("click", function(){
+  operationArray.push("-");
+  showDisplay();
+  changeDisplay();
+})
+
+point.addEventListener("click", function(){
+  operationArray.push(",");
+  showDisplay();
+  doubleComa();
+})
+
+
+
+
+
+
+
+
+//only characters accepted
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const operandSymbols = ["*", "/", "-", "+", "%"];
+
+
+//array to make operations
+let operationArray = [0];
+
+
+//show the array on display
+function showDisplay(){
+  let displayString = operationArray.join("");
+  displayCalc.innerHTML = displayString;
+  
 }
 
-addOperand();
 
-// Calculation
-function calculateArray() {
-  equal.addEventListener("click", function () {
-    let decimalCount = 0;
-    let currentOperator = null;
-    let currentNumber = 0;
-    let previousOperator = null;
-    let percentageMode = false;
-
-    for (let i = 0; i < calculation.length; i++) {
-      const currentItem = calculation[i];
-
-      if (typeof currentItem === "number") {
-        if (decimalCount > 0) {
-          currentNumber += currentItem / Math.pow(10, decimalCount);
-          decimalCount++;
-        } else {
-          currentNumber = currentNumber * 10 + currentItem;
-        }
-      } else if (currentItem === ".") {
-        decimalCount = 1;
-      } else if (operandSymbols.includes(currentItem)) {
-        if (percentageMode) {
-          currentNumber = result[0] * (currentNumber / 100);
-          percentageMode = false;
-        }
-
-        if (currentOperator === null) {
-          result[0] = currentNumber;
-        } else {
-          result[0] = evaluateOperation(result[0], currentNumber, currentOperator);
-        }
-
-        currentOperator = currentItem;
-        currentNumber = 0;
-        decimalCount = 0;
-        previousOperator = currentOperator;
-      } else if (currentItem === "%") {
-        if (
-          operandSymbols.includes(previousOperator) &&
-          !operandSymbols.includes(calculation[i + 1])
-        ) {
-          percentageMode = true;
-        }
-      }
-    }
-
-    if (currentOperator !== null) {
-      if (percentageMode) {
-        currentNumber = result[0] * (currentNumber / 100);
-        percentageMode = false;
-      }
-
-      result[0] = evaluateOperation(result[0], currentNumber, currentOperator);
-    }
-
-    displayResult();
-  });
+//remove first item of array if 0
+function removeZero(){
+  if(operationArray[0] === 0 && operationArray[1] === ","){
+    return
+  }else if(operationArray[0] === 0 && operationArray[1] != ","){
+    operationArray.shift();
+  }
 }
+removeZero();
 
-function evaluateOperation(leftOperand, rightOperand, operator) {
-  switch (operator) {
-    case "+":
-      return leftOperand + rightOperand;
-    case "-":
-      return leftOperand - rightOperand;
-    case "*":
-      return leftOperand * rightOperand;
-    case "/":
-      return leftOperand / rightOperand;
-    default:
-      throw new Error("Invalid operator: " + operator);
+//add 0 to the array if its empty
+function addZero(){
+  if(operationArray.length === 0){
+    operationArray.push(0);
+  }
+}
+addZero();
+
+//limit the number of numbers to operate
+function limitArray(){
+  if(operationArray.length > 10){
+    operationArray.pop();
+  }
+}
+limitArray();
+
+//avoid operands at first index of array
+function firstOperand(){
+if (operandSymbols.includes(operationArray[0] && operationArray[0] != "-")) {
+  operationArray.shift();
+}}
+firstOperand();
+
+//keep all limitation functions in one
+function limitFunction(){
+  removeZero();
+  firstOperand();
+  limitArray();
+  showDisplay();
+  doubleComa();
+};
+
+//disable double " , "
+function doubleComa(){
+  if(operationArray.includes(",")){
+    point.disabled = true;
+  }else if(!operationArray.includes(",")){
+    point.disabled = false;
+  }
+}
+doubleComa();
+
+
+//top screen
+
+//array to show operands and total
+let totalArray = [0];
+let displayString2;
+
+//show top display and limit total character to avoid overflow
+function displayTot(){
+  
+ if(Array.isArray(totalArray)){
+  displayString2 = totalArray.join("");
+  displayTotal.innerHTML = displayString2;}else{
+    displayString2 = totalArray;
+    displayTotal.innerHTML = displayString2;
+  }
+  
+  if(totalArray.length > 15){
+    totalArray.pop();
   }
 }
 
-calculateArray();
+
+function changeDisplay(){
+  totalArray = operationArray;
+  operationArray = [0];
+  showDisplay();
+  displayTot();
+}
+
+
+
+//equal button makes calculation based on total array last item
+
+equal.addEventListener("click", function(){
+  calculation();
+})
+
+
+function calculation(){
+  let operand = totalArray.pop();
+
+  let numberA;
+  let numberB;
+
+
+  if(totalArray.includes(",") || operationArray.includes(",")){
+    numberA = parseFloat(totalArray.join(""))
+    numberB = parseFloat(operationArray.join(""));
+  }else{
+      numberA = parseInt(totalArray.join(""))
+      numberB = parseInt(operationArray.join(""));
+    }
+
+  switch(operand){
+    
+    case "/":
+        totalArray = numberA / numberB;
+        operationArray = [0];
+        showDisplay();
+        displayTot();
+        break;
+
+      case "*":
+        totalArray = numberA * numberB;
+        operationArray = [0];
+        showDisplay();
+        displayTot();
+        break;
+
+      case "-":
+        totalArray = numberA - numberB;
+        operationArray = [0];
+        showDisplay();
+        displayTot();
+        break;
+
+      case "+" :
+        totalArray = numberA + numberB;
+        operationArray = [0];
+        showDisplay();
+        displayTot();
+        break;
+
+        case "%" :
+          totalArray = (numberA / numberB) * 100;
+          operationArray = [0];
+          showDisplay();
+          displayTot();
+          break;
+  }}
+
+
+  
